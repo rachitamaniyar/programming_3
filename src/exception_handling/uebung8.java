@@ -18,28 +18,34 @@ public class uebung8 {
 
             // legt einen BufferedReader über den InputStreamReader.
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
+try{
+    String line = bufferedReader.readLine();
+    //in order to add an exception below, if is needed otherwise the program does not run
+    // because the if next to the if below will never reach "Unreachable"
+//    if (true)
+    //This is added to test the catch clause below.
+//        throw new IOException("my new exception.");
+    if (line == null) {
+        System.err.println("Maybe ctrl+d pressed. The program will end.");
+        return;
+    }
             // Zeile für Zeile wird eingelesen.
-        try {
-            String line;
-            while (!(line = bufferedReader.readLine()).equals("STOP")) {
+            while (!line.equals("STOP")) {
                 System.out.println(line);
             }
             System.out.println("Closed");
         } catch (IOException e) {
             System.err.println("Error: IO Exception, Stacktrace.");
-e.printStackTrace();
+        e.printStackTrace();
         }
         finally {
             try {
                 bufferedReader.close();
+                //Exception chaining here. an exception in another exception.
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
-
-        // BR wird wird geschlossen
-        // Information, dass das Programm vorbei ist.
 
     }
 }
