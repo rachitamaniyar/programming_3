@@ -6,21 +6,14 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Hello world!");
 
-        //erstelle ein eindeutiges Objekt, das zur synchronisation verwendet werden kann
-        Object mySyncObjFromMain = new Object();
-
         myObjectWithRunnableInterface mowri1 = new myObjectWithRunnableInterface();
-        myObjectWithRunnableInterface mowri2 = new myObjectWithRunnableInterface();
-
         //gebe das sync-Objekt an beide Thread-Objekte,
         //damit sie nicht gleich
         //zeitig in die kritische Sektion
         //gehen, sondern warten
-        mowri1.mySyncObj = mySyncObjFromMain;
-        mowri2.mySyncObj = mySyncObjFromMain;
 
         Thread myThread = new Thread(mowri1);
-        Thread myThread2 = new Thread(mowri2);
+        Thread myThread2 = new Thread(mowri1);
         myThread.start();
         myThread2.start();
 

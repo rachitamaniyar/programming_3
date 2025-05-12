@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class myObjectWithRunnableInterface implements Runnable {
     private boolean isRunning = true;
-    private final static Object lockObject = new Object();
+   private final static Object lockObject = new Object();
 
     public void requestShutdown() {
         isRunning = false;
